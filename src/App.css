@@ -193,3 +193,77 @@ button.ghost {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Full-viewport layout */
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  min-height: 100svh;
+}
+
+/* Make the page fill and let the card grow */
+.wrap {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+.card {
+  flex: 1;
+}
+
+/* Wider on desktop, full-bleed on small screens */
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+@media (max-width: 1024px) {
+  .wrap {
+    max-width: none;
+    padding: 12px;
+  }
+}
+
+/* Single column under 1024px with comfy spacing */
+@media (max-width: 1024px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  } /* avoid iOS zoom */
+  button {
+    min-height: 48px;
+  } /* good touch target */
+}
+
+/* Make preview flexible and canvas responsive */
+.qr {
+  width: 100%;
+  min-height: clamp(260px, 40vh, 500px);
+}
+.qr canvas,
+.qr img {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+}
+
+/* Footer sticks to bottom if short content */
+.foot {
+  margin-top: 12px;
+}
